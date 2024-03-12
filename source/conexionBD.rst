@@ -1,4 +1,4 @@
-conexionBD module
+Modulo ConexionBD
 =================
 
 .. automodule:: conexionBD

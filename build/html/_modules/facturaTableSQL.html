@@ -41,7 +41,7 @@
 <span class="kn">from</span> <span class="nn">reportlab.platypus</span> <span class="kn">import</span> <span class="n">SimpleDocTemplate</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">TableStyle</span>
 <span class="kn">from</span> <span class="nn">reportlab.lib.pagesizes</span> <span class="kn">import</span> <span class="n">A4</span>
 <span class="kn">from</span> <span class="nn">reportlab.lib</span> <span class="kn">import</span> <span class="n">colors</span>
-<span class="c1">#from conexionBD import ConexionBD</span>
+<span class="kn">from</span> <span class="nn">conexionBD</span> <span class="kn">import</span> <span class="n">ConexionBD</span>
 
 
 
@@ -174,7 +174,7 @@
 
         <span class="c1"># BASE DE DATOS</span>
         <span class="n">ruta_bd</span> <span class="o">=</span> <span class="s2">&quot;modelosClasicos.dat&quot;</span>
-        <span class="c1">#self.conexion_bd = ConexionBD(ruta_bd)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conexion_bd</span> <span class="o">=</span> <span class="n">ConexionBD</span><span class="p">(</span><span class="n">ruta_bd</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conexion_bd</span><span class="o">.</span><span class="n">conectaBD</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conexion_bd</span><span class="o">.</span><span class="n">creaCursor</span><span class="p">()</span>
 
@@ -398,7 +398,8 @@
 <h3>Navegación</h3>
 <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../facturaTableSQL.html">facturaTableSQL module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual.html">MANUAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conexionBD.html">Modulo ConexionBD</a></li>
 </ul>
 
 <div class="relations">

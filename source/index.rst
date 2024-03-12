@@ -10,7 +10,7 @@ Bienvenidos a la documentación de Jorge!
    :maxdepth: 4
    :caption: Contenidos:
 
-   facturaTableSQL
+   manual
    conexionBD
 
 

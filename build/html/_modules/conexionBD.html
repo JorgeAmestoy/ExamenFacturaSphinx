@@ -41,9 +41,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rutaBd</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">rutaBd</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Crea as propiedades necesarias para o acceso a unha base de datos e as inicializa.</span>
-
+<span class="sd">        </span>
 <span class="sd">        A clase ConexiónBD utiliza tres propiedades: rutaBd para saber cal é o lugar onde está localizado o ficheiro, conexion que referencia o obxecto connection cando este se crea e cursor que referencia o obxecto cursor cando este é inicializado. A conexión e a creación do cursor non é automática, ten que ser invocada polo programador.</span>
 
 <span class="sd">        :param rutaBd: Ruta onde se encontra o ficheiro da base de datos SQlite</span>
@@ -53,9 +53,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="kc">None</span>
 
+
 <div class="viewcode-block" id="ConexionBD.conectaBD">
 <a class="viewcode-back" href="../conexionBD.html#conexionBD.ConexionBD.conectaBD">[documentos]</a>
-    <span class="k">def</span> <span class="nf">conectaBD</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">conectaBD</span> <span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Método que crea a conexión da base de datos.</span>
 
 <span class="sd">        Para realizar a conexión precisa da ruta onde está a base de datos que selle pasa no método __init__.</span>
@@ -65,16 +66,17 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rutaBd</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A ruta da base de datos é: None &quot;</span><span class="p">)</span>
+                    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;A ruta da base de datos é: None &quot;</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="o">=</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rutaBd</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="o">=</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">connect</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rutaBd</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Base de datos conectada: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="p">)</span>
+                <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Base de datos conectada: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="p">)</span>
 
         <span class="k">except</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">StandardError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro o facer a conexión a base de datos &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rutaBd</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Erro o facer a conexión a base de datos &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rutaBd</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conexión de base de datos realizada&quot;</span><span class="p">)</span></div>
+            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Conexión de base de datos realizada&quot;</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="ConexionBD.creaCursor">
@@ -82,32 +84,33 @@
     <span class="k">def</span> <span class="nf">creaCursor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Método que crea o cursor da base de datos.</span>
 
-<span class="sd">        Para realizar o cursor precísase previamente da execución do método conectaBD, que crea a conexión a base de</span>
+<span class="sd">        Para realizar o cursor precísase previamente da execución do método conectaBD, que crea a conexión a base de </span>
 <span class="sd">        datos na ruta onde está padada o método __init__.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creando o cursor: É necesario realizar a conexión a base de datos previamente&quot;</span><span class="p">)</span>
+                <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Creando o cursor: É necesario realizar a conexión a base de datos previamente&quot;</span><span class="p">)</span>
 
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;O cursor xa esta inicializado: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">)</span>
+                    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;O cursor xa esta inicializado: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">)</span>
 
 
         <span class="k">except</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cursor preparado&quot;</span><span class="p">)</span></div>
+            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Cursor preparado&quot;</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="ConexionBD.consultaSenParametros">
 <a class="viewcode-back" href="../conexionBD.html#conexionBD.ConexionBD.consultaSenParametros">[documentos]</a>
-    <span class="k">def</span> <span class="nf">consultaSenParametros</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">consultaSQL</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">consultaSenParametros</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">consultaSQL</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Retorna unha lista cos rexistros dunha consulta realizada sen pasarlle parámetros.</span>
 
 <span class="sd">        :param consultaSQL. Código da consulta sql a executar</span>
@@ -126,7 +129,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">consultaSQL</span><span class="p">)</span>
 
                     <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
-                        <span class="n">listaConsulta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
+                        <span class="n">listaConsulta</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">fila</span><span class="p">)</span>
 
         <span class="k">except</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">DatabaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro facendo a consulta: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
@@ -170,31 +173,100 @@
             <span class="k">return</span> <span class="n">listaConsulta</span></div>
 
 
+<div class="viewcode-block" id="ConexionBD.engadeRexistro">
+<a class="viewcode-back" href="../conexionBD.html#conexionBD.ConexionBD.engadeRexistro">[documentos]</a>
+    <span class="k">def</span> <span class="nf">engadeRexistro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">insertSQL</span><span class="p">,</span> <span class="o">*</span><span class="n">parametros</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Realiza una inserción en la base de datos utilizando los parámetros especificados.</span>
 
+<span class="sd">        :param insertSQL: Código de inserción SQL a ejecutar.</span>
+<span class="sd">        :param *parametros: Parámetros para introducir en la inserción.</span>
 
-<div class="viewcode-block" id="ConexionBD.eliminar_datos">
-<a class="viewcode-back" href="../conexionBD.html#conexionBD.ConexionBD.eliminar_datos">[documentos]</a>
-    <span class="k">def</span> <span class="nf">eliminar_datos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">consulta_sql</span><span class="p">,</span> <span class="n">valores</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Elimina datos de la base de datos.</span>
-
-<span class="sd">        :param consulta_sql: La consulta SQL de eliminación.</span>
-<span class="sd">        :param valores: Los valores a utilizar en la consulta.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: No hay conexión a la base de datos.&quot;</span><span class="p">)</span>
-                <span class="k">return</span>
-
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: No se ha creado el cursor.&quot;</span><span class="p">)</span>
-                <span class="k">return</span>
-
-            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">consulta_sql</span><span class="p">,</span> <span class="n">valores</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datos eliminados correctamente de la base de datos.&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando inserción: É necesario realizar a conexión a base de datos previamente&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando inserción: É necesario realizar a creación do cursor previamente&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insertSQL</span><span class="p">,</span> <span class="n">parametros</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 
         <span class="k">except</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">DatabaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error al eliminar datos de la base de datos:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro facendo a inserción: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inserción executada&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ConexionBD.actualizaRexistro">
+<a class="viewcode-back" href="../conexionBD.html#conexionBD.ConexionBD.actualizaRexistro">[documentos]</a>
+    <span class="k">def</span> <span class="nf">actualizaRexistro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">updateSQL</span><span class="p">,</span> <span class="o">*</span><span class="n">parametros</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Realiza una actualización de registro en la base de datos utilizando los parámetros especificados.</span>
+
+<span class="sd">        :param updateSQL: Código de actualización SQL a ejecutar.</span>
+<span class="sd">        :param *parametros: Parámetros para introducir en la actualización.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando actualización rexistro: É necesario realizar a conexión a base de datos previamente&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando actualización rexistro: É necesario realizar a creación do cursor previamente&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">updateSQL</span><span class="p">,</span> <span class="n">parametros</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">DatabaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro facendo a actualización rexistro: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actualización rexistro executada&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ConexionBD.borraRexistro">
+<a class="viewcode-back" href="../conexionBD.html#conexionBD.ConexionBD.borraRexistro">[documentos]</a>
+    <span class="k">def</span> <span class="nf">borraRexistro</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">borraSQL</span><span class="p">,</span> <span class="o">*</span><span class="n">parametros</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Realiza un borrado de registro en la base de datos utilizando los parámetros especificados.</span>
+
+<span class="sd">        :param borraSQL: Código de borrado SQL a ejecutar.</span>
+<span class="sd">        :param *parametros: Parámetros para introducir en el borrado.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando borrado rexistro: É necesario realizar a conexión a base de datos previamente&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando borrado rexistro: É necesario realizar a creación do cursor previamente&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">borraSQL</span><span class="p">,</span> <span class="n">parametros</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">DatabaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro facendo o borrado rexistro: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Borrado de rexistro executado&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ConexionBD.pechaBD">
+<a class="viewcode-back" href="../conexionBD.html#conexionBD.ConexionBD.pechaBD">[documentos]</a>
+    <span class="k">def</span> <span class="nf">pechaBD</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pecha o cursor e a conexión da base de datos si esta existe.</span>
+
+<span class="sd">                Comproba si a conexión e o cursor existe e si é asi a pecha.</span>
+
+
+
+<span class="sd">                &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 </div>
 
 
@@ -218,7 +290,8 @@
 <h3>Navegación</h3>
 <p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../facturaTableSQL.html">facturaTableSQL module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual.html">MANUAL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conexionBD.html">Modulo ConexionBD</a></li>
 </ul>
 
 <div class="relations">

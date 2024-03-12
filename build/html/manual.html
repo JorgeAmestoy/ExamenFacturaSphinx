@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="es" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MANUAL &#8212; documentación de ExamenFactura - </title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=e2bb6099"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=efdbd0b9"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Modulo ConexionBD" href="conexionBD.html" />
+    <link rel="prev" title="Bienvenidos a la documentación de Jorge!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="manual">
+<h1>MANUAL<a class="headerlink" href="#manual" title="Link to this heading">¶</a></h1>
+<section id="clase-modelo-taboa">
+<h2>CLASE MODELO TABOA<a class="headerlink" href="#clase-modelo-taboa" title="Link to this heading">¶</a></h2>
+<p>Clase Modelo Taboa:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ModeloTaboa</span><span class="p">(</span><span class="n">QAbstractTableModel</span><span class="p">):</span>
+<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datos</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">datos</span> <span class="o">=</span> <span class="n">datos</span>
+
+<span class="k">def</span> <span class="nf">rowCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datos</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">columnCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">ItemDataRole</span><span class="o">.</span><span class="n">DisplayRole</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">index</span><span class="o">.</span><span class="n">isValid</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">ItemDataRole</span><span class="o">.</span><span class="n">DisplayRole</span> <span class="ow">or</span> <span class="n">role</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">ItemDataRole</span><span class="o">.</span><span class="n">EditRole</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">datos</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()][</span><span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()]</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">setData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">role</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">ItemDataRole</span><span class="o">.</span><span class="n">EditRole</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datos</span><span class="p">[</span><span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">()][</span><span class="n">index</span><span class="o">.</span><span class="n">column</span><span class="p">()]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Esta clase hereda de <strong>QAbstractTableModel</strong> para crear el modelo al que se va asociar
+la tabla.</p>
+</section>
+<section id="clase-fiestra-principal">
+<h2>CLASE FIESTRA PRINCIPAL<a class="headerlink" href="#clase-fiestra-principal" title="Link to this heading">¶</a></h2>
+<p>Tiene el contenido que se muestra en la ventana saliente cuando se ejecuta el programa.
+El objetivo del programa es generar un informe con una tabla con datos asociados a la base de datos
+de la tabla <strong>Clientes</strong></p>
+<section id="metodos-de-clase-fiesta-principal">
+<h3>METODOS DE CLASE FIESTA PRINCIPAL<a class="headerlink" href="#metodos-de-clase-fiesta-principal" title="Link to this heading">¶</a></h3>
+<p>Son los siguientes:</p>
+<ol class="arabic simple">
+<li><p><strong>on_btnEngadir_pressed(self):</strong></p></li>
+<li><p><strong>on_btnEditar_pressed(self):</strong></p></li>
+<li><p><strong>on_btnBorrar_pressed(self):</strong></p></li>
+<li><p><strong>on_btnAceptar_pressed(self):</strong></p></li>
+<li><p><strong>on_btnCancelar_pressed(self):</strong></p></li>
+<li><p><strong>on_modelo_selectionChanged(self):</strong></p></li>
+<li><p><strong>cargarCamposDendeSeleccion(self):</strong></p></li>
+<li><p><strong>def borrarCampos(self):</strong></p></li>
+<li><p><strong>on_botonGenerarFactura_clicked</strong></p></li>
+</ol>
+</section>
+</section>
+<section id="tabla-del-formulario">
+<h2>TABLA DEL FORMULARIO<a class="headerlink" href="#tabla-del-formulario" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+<th class="head"><p>4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Ana</p></td>
+<td><p>Perez Diz</p></td>
+<td><p>986857470</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Luis</p></td>
+<td><p>Xil Novas</p></td>
+<td><p>985628291</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Anxo</p></td>
+<td><p>Rois Chan</p></td>
+<td><p>6748294759</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="imagen-del-formulario">
+<h2>IMAGEN DEL FORMULARIO<a class="headerlink" href="#imagen-del-formulario" title="Link to this heading">¶</a></h2>
+<img alt="_images/capturaFormulario.png" src="_images/capturaFormulario.png" />
+</section>
+<section id="lista-desordenada-de-la-ficha-del-cliente">
+<h2>LISTA DESORDENADA DE LA FICHA DEL CLIENTE<a class="headerlink" href="#lista-desordenada-de-la-ficha-del-cliente" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Número Cliente: 1</p></li>
+<li><p>Nome Cliente: Ana</p></li>
+<li><p>Apelidos: Pérez Díaz</p></li>
+<li><p>Direccion: Garcia Barbón</p></li>
+<li><p>Cidade: Vigo</p></li>
+<li><p>Provincia: Pontevedra</p></li>
+<li><p>Código postal: 36201</p></li>
+<li><p>Teléfono: 986456780</p></li>
+<li><p>País: España</p></li>
+<li><p>Axente Comercial: 1</p></li>
+</ul>
+</section>
+<section id="modulo-conexionbd">
+<h2>MODULO CONEXIONBD<a class="headerlink" href="#modulo-conexionbd" title="Link to this heading">¶</a></h2>
+<section id="metodos-de-conexion-bd">
+<h3>METODOS DE CONEXION_BD<a class="headerlink" href="#metodos-de-conexion-bd" title="Link to this heading">¶</a></h3>
+<p><strong>engadeRexistro</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">engadeRexistro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">insertSQL</span><span class="p">,</span> <span class="o">*</span><span class="n">parametros</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Realiza una inserción en la base de datos utilizando los parámetros especificados.</span>
+
+<span class="sd">    :param insertSQL: Código de inserción SQL a ejecutar.</span>
+<span class="sd">    :param *parametros: Parámetros para introducir en la inserción.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando inserción: É necesario realizar a conexión a base de datos previamente&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando inserción: É necesario realizar a creación do cursor previamente&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insertSQL</span><span class="p">,</span> <span class="n">parametros</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">DatabaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro facendo a inserción: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inserción executada&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>actualizaRexistro</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">actualizaRexistro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">updateSQL</span><span class="p">,</span> <span class="o">*</span><span class="n">parametros</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Realiza una actualización de registro en la base de datos utilizando los parámetros especificados.</span>
+
+<span class="sd">    :param updateSQL: Código de actualización SQL a ejecutar.</span>
+<span class="sd">    :param *parametros: Parámetros para introducir en la actualización.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando actualización rexistro: É necesario realizar a conexión a base de datos previamente&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando actualización rexistro: É necesario realizar a creación do cursor previamente&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">updateSQL</span><span class="p">,</span> <span class="n">parametros</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">DatabaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro facendo a actualización rexistro: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actualización rexistro executada&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>borraRexistro</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">borraRexistro</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">borraSQL</span><span class="p">,</span> <span class="o">*</span><span class="n">parametros</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Realiza un borrado de registro en la base de datos utilizando los parámetros especificados.</span>
+
+<span class="sd">    :param borraSQL: Código de borrado SQL a ejecutar.</span>
+<span class="sd">    :param *parametros: Parámetros para introducir en el borrado.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando borrado rexistro: É necesario realizar a conexión a base de datos previamente&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Realizando borrado rexistro: É necesario realizar a creación do cursor previamente&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">borraSQL</span><span class="p">,</span> <span class="n">parametros</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">dbapi</span><span class="o">.</span><span class="n">DatabaseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro facendo o borrado rexistro: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Borrado de rexistro executado&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="caso-de-prueba">
+<h2>CASO DE PRUEBA<a class="headerlink" href="#caso-de-prueba" title="Link to this heading">¶</a></h2>
+<p><strong>Nombre del caso de prueba:</strong> Inserción de botón GenerarFactura.</p>
+<p><strong>Descripción:</strong> Este caso de prueba verifica si al pulsar el botón <strong>GenerarFactura</strong> crea un PDF con una tabla
+que contenga los datos de los clientes de la base de datos.</p>
+<p><strong>Pasos:</strong></p>
+<ol class="arabic simple">
+<li><p>Iniciar la aplicación.</p></li>
+<li><p>Ejecutar el método <strong>on_botonGenerarFactura_clicked</strong>.</p></li>
+<li><p>Verificar si se ha creado correctamente el PDF con los datos de la base de datos.</p></li>
+</ol>
+<p><strong>Condiciones de ejecución:</strong></p>
+<ol class="arabic simple">
+<li><p>El PDF debe mostrar el formato de tabla indicado en el ejercicio 4.</p></li>
+<li><p>Deben aparecer tantas tablas como clientes tiene la abse de datos con la información de cada uno.</p></li>
+</ol>
+<p><strong>Resultado esperado:</strong> Se espera la creación del PDF con la tablas y la información de cada cliente en ellas.</p>
+<p><strong>Estado de prueba:</strong> Realizado.</p>
+<p><strong>Resultado obtenido:</strong> Fallido.</p>
+<p><strong>Errores asociados:</strong> Se genera una tabla con todos los clientes en vez de una por cliente.</p>
+<p><strong>Responsable do deseño de proba</strong>: Jorge Amestoy</p>
+<p><strong>Responsable da execución da proba</strong>: Jorge Amestoy</p>
+<p><strong>Comentarios</strong>: Intentar ejecutar el método utilizando un <strong>while</strong> con el número de cliente.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">ExamenFactura</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+<p class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MANUAL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#clase-modelo-taboa">CLASE MODELO TABOA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clase-fiestra-principal">CLASE FIESTRA PRINCIPAL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#metodos-de-clase-fiesta-principal">METODOS DE CLASE FIESTA PRINCIPAL</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tabla-del-formulario">TABLA DEL FORMULARIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#imagen-del-formulario">IMAGEN DEL FORMULARIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lista-desordenada-de-la-ficha-del-cliente">LISTA DESORDENADA DE LA FICHA DEL CLIENTE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modulo-conexionbd">MODULO CONEXIONBD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#metodos-de-conexion-bd">METODOS DE CONEXION_BD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#caso-de-prueba">CASO DE PRUEBA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conexionBD.html">Modulo ConexionBD</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="capítulo anterior">Bienvenidos a la documentación de Jorge!</a></li>
+      <li>Next: <a href="conexionBD.html" title="próximo capítulo">Modulo ConexionBD</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Jorge Amestoy.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/manual.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
